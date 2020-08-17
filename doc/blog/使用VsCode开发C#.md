@@ -40,4 +40,4 @@
 
 ![企业微信截图_1597660388842](https://raw.githubusercontent.com/liyunzhi1993/Image/master/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_1597660388842.png)
 
-还挺好看和舒服的吧~
+还挺好看和舒服的吧~~
