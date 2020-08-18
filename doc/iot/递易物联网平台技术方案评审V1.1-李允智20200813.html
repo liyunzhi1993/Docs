@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>递易物联网平台技术方案评审V1.1-李允智20200813.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E9%80%92%E6%98%93%E7%89%A9%E8%81%94%E7%BD%91%E5%B9%B3%E5%8F%B0%E6%8A%80%E6%9C%AF%E6%96%B9%E6%A1%88%E8%AF%84%E5%AE%A1%E6%96%87%E6%A1%A3">递易物联网平台技术方案评审文档</h1>
+<blockquote>
+<p>作者：李允智
+时间： 2020-08-13
+版本：1.1</p>
+</blockquote>
+<h2 id="%E5%89%8D%E8%A8%80">前言</h2>
+<p>在IoT版本1.0中，主要是做了设备的基础通信。在版本1.1中，主要做两件事情</p>
+<ul>
+<li>原先业务方控制格口的权利，转交给IoT</li>
+<li>开箱等下方设备指令走IoT</li>
+</ul>
+<p>模块仍分为</p>
+<blockquote>
+<ul>
+<li>Device 设备模块</li>
+<li>Box 柜机模块</li>
+</ul>
+</blockquote>
+<p>所有接口返回</p>
+<blockquote>
+<ul>
+<li>Code状态码 200为正常，0为错误</li>
+<li>Message错误提示 当为0时有值</li>
+</ul>
+</blockquote>
+<h2 id="%E6%80%9D%E7%BB%B4%E5%AF%BC%E5%9B%BE">思维导图</h2>
+<p><img src="https://raw.githubusercontent.com/liyunzhi1993/Image/master/20200813174154.png" alt="20200813174154"></p>
+<blockquote>
+<p>导图中状态为IoT格口状态</p>
+</blockquote>
+<h2 id="device-%E8%AE%BE%E5%A4%87%E6%A8%A1%E5%9D%97">Device 设备模块</h2>
+<p>V1.1无更新</p>
+<h2 id="box-%E6%9F%9C%E6%9C%BA%E6%A8%A1%E5%9D%97">Box 柜机模块</h2>
+<h3 id="1%E7%94%B3%E8%AF%B7%E5%B9%B6%E5%BC%80%E5%90%AF%E6%A0%BC%E5%8F%A3%E6%8E%A5%E5%8F%A3">1、申请并开启格口接口</h3>
+<blockquote>
+<p>提供给业务方，申请并开启格口，原业务系统中【获取一个可用格口】，将格口的控制权转交给IoT，IoT来统一分配格口。如果有可用，开启格口</p>
+</blockquote>
+<blockquote>
+<p><strong>注意</strong></p>
+<ul>
+<li>IoT在开箱成功之后会进行格口占用，该格口占用为IoT格口占用，非业务系统格口状态</li>
+</ul>
+</blockquote>
+<h4 id="%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%85%A5%E5%8F%82">接口请求入参</h4>
+<blockquote>
+<p>请求地址：Box/ApplyOpenCell</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DeviceSn</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备编号</td>
+</tr>
+<tr>
+<td style="text-align:left">CellType</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">int</td>
+<td>格口类型</td>
+</tr>
+<tr>
+<td style="text-align:left">BizOrderId</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>第三方业务单号ID</td>
+</tr>
+<tr>
+<td style="text-align:left">DeviceTenantId</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备归属商户ID</td>
+</tr>
+<tr>
+<td style="text-align:left">DeviceTenantName</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备归属商户名称</td>
+</tr>
+<tr>
+<td style="text-align:left">BizName</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>业务来源系统【收衣】</td>
+</tr>
+<tr>
+<td style="text-align:left">BizTenantId</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>业务所属商户ID</td>
+</tr>
+<tr>
+<td style="text-align:left">BizTentantName</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>业务所属商户名称</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>格口类型Code</li>
+</ul>
+<blockquote>
+<ul>
+<li>小格口 1</li>
+<li>中格口  2</li>
+<li>大格口 3</li>
+<li>超大格口 4</li>
+</ul>
+</blockquote>
+<h4 id="%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%87%BA%E5%8F%82">接口请求出参</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Data - IsSuccess</td>
+<td style="text-align:left">bool</td>
+<td>申请并开启是否成功</td>
+</tr>
+<tr>
+<td style="text-align:left">Data - CellSn</td>
+<td style="text-align:left">string</td>
+<td>格口编码</td>
+</tr>
+<tr>
+<td style="text-align:left">Code</td>
+<td style="text-align:left">integer</td>
+<td>返回状态码</td>
+</tr>
+<tr>
+<td style="text-align:left">Message</td>
+<td style="text-align:left">string</td>
+<td>错误提示</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>IsSuccess为faslse错误提示信息有</strong></p>
+<ul>
+<li>暂无可用格口</li>
+<li>设备无响应</li>
+<li>格口开启失败</li>
+</ul>
+</blockquote>
+<h3 id="2-%E5%BC%80%E5%90%AF%E6%A0%BC%E5%8F%A3%E6%8E%A5%E5%8F%A3">2、 开启格口接口</h3>
+<blockquote>
+<p>提供给业务方，开启格口。该接口需要对应业务场景进行格口开启</p>
+</blockquote>
+<blockquote>
+<p>业务场景分为</p>
+<ul>
+<li>取件开箱 1</li>
+<li>管理员退柜开箱 2</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>注意</strong></p>
+<ul>
+<li>IoT在开箱成功之后会将格口改为正常可用状态【IoT格口状态】</li>
+</ul>
+</blockquote>
+<h4 id="%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%85%A5%E5%8F%82">接口请求入参</h4>
+<blockquote>
+<p>请求地址：Box/OpenCell</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DeviceSn</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备编号</td>
+</tr>
+<tr>
+<td style="text-align:left">CellSn</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>格口编码</td>
+</tr>
+<tr>
+<td style="text-align:left">BizSceneType</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">int</td>
+<td>业务场景类型</td>
+</tr>
+<tr>
+<td style="text-align:left">BizOrderId</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>业务单号ID</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>第三方业务单号ID，如果没有可传运单号，目的是为了保证，开启的时候格口号和业务单号Id一致才能开</p>
+</blockquote>
+<h4 id="%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%87%BA%E5%8F%82">接口请求出参</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Data - IsSuccess</td>
+<td style="text-align:left">bool</td>
+<td>开启是否成功</td>
+</tr>
+<tr>
+<td style="text-align:left">Code</td>
+<td style="text-align:left">integer</td>
+<td>返回状态码</td>
+</tr>
+<tr>
+<td style="text-align:left">Message</td>
+<td style="text-align:left">string</td>
+<td>错误提示</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>IsSuccess为true错误提示信息为</strong></p>
+<ul>
+<li>格口开启成功</li>
+</ul>
+</blockquote>
+<blockquote>
+<p><strong>IsSuccess为false错误提示信息有</strong></p>
+<ul>
+<li>设备无响应</li>
+<li>格口开启失败</li>
+</ul>
+</blockquote>
+<h2 id="%E6%A0%BC%E5%8F%A3%E5%BC%80%E5%90%AF%E5%A4%B1%E8%B4%A5%E8%AE%BE%E4%B8%BA%E6%95%85%E9%9A%9C%E9%80%BB%E8%BE%91">格口开启失败，设为故障逻辑</h2>
+<blockquote>
+<p>3次设备返回【格口开启失败】则将格口设为故障，该故障目前IoT会设置，也会将业务方的格口状态设为故障【临时方案，直到所有格口控制权转交IoT】
+该格口再3次之前开启成功，则清除标记次数；</p>
+</blockquote>
+
+</body>
+</html>
