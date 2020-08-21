@@ -439,37 +439,19 @@ code {
 <td style="text-align:left">BizOrderId</td>
 <td style="text-align:left">是</td>
 <td style="text-align:left">string</td>
-<td>第三方业务单号ID</td>
+<td>来源业务单号ID</td>
 </tr>
 <tr>
-<td style="text-align:left">DeviceTenantId</td>
+<td style="text-align:left">TenantId</td>
 <td style="text-align:left">是</td>
 <td style="text-align:left">string</td>
 <td>设备归属商户ID</td>
 </tr>
 <tr>
-<td style="text-align:left">DeviceTenantName</td>
+<td style="text-align:left">TenantName</td>
 <td style="text-align:left">是</td>
 <td style="text-align:left">string</td>
 <td>设备归属商户名称</td>
-</tr>
-<tr>
-<td style="text-align:left">BizName</td>
-<td style="text-align:left">是</td>
-<td style="text-align:left">string</td>
-<td>业务来源系统【收衣】</td>
-</tr>
-<tr>
-<td style="text-align:left">BizTenantId</td>
-<td style="text-align:left">是</td>
-<td style="text-align:left">string</td>
-<td>业务所属商户ID</td>
-</tr>
-<tr>
-<td style="text-align:left">BizTentantName</td>
-<td style="text-align:left">是</td>
-<td style="text-align:left">string</td>
-<td>业务所属商户名称</td>
 </tr>
 </tbody>
 </table>
@@ -577,7 +559,7 @@ code {
 <td style="text-align:left">BizOrderId</td>
 <td style="text-align:left">是</td>
 <td style="text-align:left">string</td>
-<td>业务单号ID</td>
+<td>来源业务单号ID</td>
 </tr>
 </tbody>
 </table>
@@ -624,10 +606,255 @@ code {
 <li>格口开启失败</li>
 </ul>
 </blockquote>
-<h2 id="%E6%A0%BC%E5%8F%A3%E5%BC%80%E5%90%AF%E5%A4%B1%E8%B4%A5%E8%AE%BE%E4%B8%BA%E6%95%85%E9%9A%9C%E9%80%BB%E8%BE%91">格口开启失败，设为故障逻辑</h2>
+<h4 id="%E6%A0%BC%E5%8F%A3%E5%BC%80%E5%90%AF%E5%A4%B1%E8%B4%A5%E8%AE%BE%E4%B8%BA%E6%95%85%E9%9A%9C%E9%80%BB%E8%BE%91">格口开启失败，设为故障逻辑</h4>
 <blockquote>
 <p>3次设备返回【格口开启失败】则将格口设为故障，该故障目前IoT会设置，也会将业务方的格口状态设为故障【临时方案，直到所有格口控制权转交IoT】
 该格口再3次之前开启成功，则清除标记次数；</p>
+</blockquote>
+<h3 id="3%E8%8E%B7%E5%8F%96%E6%A0%BC%E5%8F%A3%E6%95%B0%E9%87%8F">3、获取格口数量</h3>
+<blockquote>
+<p>提供给业务方，获取各种类型格口的【可用】格口数量</p>
+</blockquote>
+<ul>
+<li>格口类型Code</li>
+</ul>
+<blockquote>
+<ul>
+<li>小格口 1</li>
+<li>中格口  2</li>
+<li>大格口 3</li>
+<li>超大格口 4</li>
+</ul>
+</blockquote>
+<h4 id="%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%85%A5%E5%8F%82">接口请求入参</h4>
+<blockquote>
+<p>请求地址：Box/QueryCellCount</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DeviceSn</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备编号</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%87%BA%E5%8F%82">接口请求出参</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Data - SmallCount</td>
+<td style="text-align:left">int</td>
+<td>小格口可用数量</td>
+</tr>
+<tr>
+<td style="text-align:left">Data - CenterCount</td>
+<td style="text-align:left">int</td>
+<td>中格口可用数量</td>
+</tr>
+<tr>
+<td style="text-align:left">Data - BigCount</td>
+<td style="text-align:left">int</td>
+<td>大格口可用数量</td>
+</tr>
+<tr>
+<td style="text-align:left">Data - LargeCount</td>
+<td style="text-align:left">int</td>
+<td>超大格口可用数量</td>
+</tr>
+<tr>
+<td style="text-align:left">Code</td>
+<td style="text-align:left">integer</td>
+<td>返回状态码</td>
+</tr>
+<tr>
+<td style="text-align:left">Message</td>
+<td style="text-align:left">string</td>
+<td>错误提示</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4%E6%A0%BC%E5%8F%A3%E7%8A%B6%E6%80%81%E5%BC%80%E5%90%AF%E5%85%B3%E9%97%AD">4、格口状态(开启/关闭)</h3>
+<blockquote>
+<p>提供给业务方，获取设备格口的格口状态</p>
+</blockquote>
+<h4 id="%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%85%A5%E5%8F%82">接口请求入参</h4>
+<blockquote>
+<p>请求地址：Box/QueryCellStatus</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">DeviceSn</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备编号</td>
+</tr>
+<tr>
+<td style="text-align:left">CellSn</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备编号</td>
+</tr>
+<tr>
+<td style="text-align:left">BizOrderId</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>来源业务单号ID</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>第三方业务单号ID，如果没有可传运单号，目的是为了保证，判断格口号和业务单号Id一致才会做判断</p>
+</blockquote>
+<h4 id="%E6%8E%A5%E5%8F%A3%E8%AF%B7%E6%B1%82%E5%87%BA%E5%8F%82">接口请求出参</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Data - CellStatus</td>
+<td style="text-align:left">int</td>
+<td>开启还是关闭</td>
+</tr>
+<tr>
+<td style="text-align:left">Code</td>
+<td style="text-align:left">integer</td>
+<td>返回状态码</td>
+</tr>
+<tr>
+<td style="text-align:left">Message</td>
+<td style="text-align:left">string</td>
+<td>错误提示</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>格口状态CellStatus</li>
+</ul>
+<blockquote>
+<ul>
+<li>开启 1</li>
+<li>关闭 0</li>
+</ul>
+</blockquote>
+<h4 id="%E5%A2%9E%E5%8A%A0mqtt-%E5%8D%8F%E8%AE%AE%E5%BF%AB%E9%80%92%E6%9F%9C%E8%8E%B7%E5%8F%96%E6%A0%BC%E5%8F%A3%E7%8A%B6%E6%80%81%E5%BC%80%E5%90%AF%E6%88%96%E8%80%85%E5%85%B3%E9%97%AD">增加MQTT 协议【快递柜】，获取格口状态【开启或者关闭】</h4>
+<blockquote>
+<p>平台下发</p>
+<ul>
+<li>Topic：0002设备号/OnLineSmartBase</li>
+<li>Met：CellSta</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>柜机下发</p>
+<ul>
+<li>Topic：平台下发的Cid/OnLineBase</li>
+</ul>
+</blockquote>
+<h4 id="%E5%B9%B3%E5%8F%B0%E8%AF%B7%E6%B1%82%E5%85%A5%E5%8F%82">平台请求入参</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Dt</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备类型</td>
+</tr>
+<tr>
+<td style="text-align:left">Sn</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>设备编号</td>
+</tr>
+<tr>
+<td style="text-align:left">Mid</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>消息ID</td>
+</tr>
+<tr>
+<td style="text-align:left">Ts</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td style="text-align:left">Sign</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>签名</td>
+</tr>
+<tr>
+<td style="text-align:left">Cid</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>ClientId</td>
+</tr>
+</tbody>
+</table>
+<h4 id="%E6%9F%9C%E6%9C%BA%E8%AF%B7%E6%B1%82%E5%85%A5%E5%8F%82">柜机请求入参</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数名</th>
+<th style="text-align:left">必选</th>
+<th style="text-align:left">类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Code</td>
+<td style="text-align:left">是</td>
+<td style="text-align:left">string</td>
+<td>返回状态码</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>返回状态码</p>
+<ul>
+<li>200 箱门关闭</li>
+<li>201 箱门开启</li>
+</ul>
 </blockquote>
 
 </body>
