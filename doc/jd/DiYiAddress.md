@@ -41,7 +41,12 @@
 - 京东出库：dycontrol restart jdggyy expressOutTask JDSendOrder.ExpressOut.dll 2
 
 ### 灰度命令
-- 小蜜蜂： nohup dotnet DiYi.JDBeeApp.Api.dll urls=http://0.0.0.0:12251
+- 小蜜蜂： nohup dotnet DiYi.JDBeeApp.Api   .dll urls=http://0.0.0.0:12251
+
+### 临时命令
+- 京东云柜 nohup dotnet DiYi.JDBox.WebApi.dll urls=http://0.0.0.0:12301
+- 京东快递员 nohup dotnet JDCourierApi.dll urls=http://0.0.0.0:12302
+- 京东快递员 nohup dotnet DiYi.JDBeeApp.Api.dll urls=http://0.0.0.0:12301
 
 
 
