@@ -33,10 +33,12 @@
 - 京东出库：dycontrol release jdggyy expressOutTask JDSendOrder.ExpressOut.dll 2
 - 递驿APP：dycontrol release dapp courierStationAppApi CourierStationAppApi.dll 12304
 
+- 京东JOB：dycontrol release jdjob DataSyncJob DiYi.DataSyncJob.dll 1
+
 ### 正式重启命令
 - 小蜜蜂：dycontrol restart xmf JDBeeAppApi DiYi.JDBeeApp.Api.dll 12303
 - 京东快递员：dycontrol release jdkdy JDCourierApi JDCourierApi.dll 12302
-- 京东云柜：dycontrol release jdzng JDBoxApi DiYi.JDBox.WebApi.dll 12301
+- 京东云柜：dycontrol restart jdzng JDBoxApi DiYi.JDBox.WebApi.dll 12301
 - 京东入库：dycontrol restart jdggyy expressInTask JDSendOrder.ExpressIn.dll 2
 - 京东出库：dycontrol restart jdggyy expressOutTask JDSendOrder.ExpressOut.dll 2
 
@@ -46,7 +48,7 @@
 ### 临时命令
 - 京东云柜 nohup dotnet DiYi.JDBox.WebApi.dll urls=http://0.0.0.0:12301
 - 京东快递员 nohup dotnet JDCourierApi.dll urls=http://0.0.0.0:12302
-- 京东快递员 nohup dotnet DiYi.JDBeeApp.Api.dll urls=http://0.0.0.0:12301
+- 小蜜蜂 nohup dotnet DiYi.JDBeeApp.Api.dll urls=http://0.0.0.0:12301
 
 
 
