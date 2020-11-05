@@ -51,4 +51,5 @@
 - 小蜜蜂 nohup dotnet DiYi.JDBeeApp.Api.dll urls=http://0.0.0.0:12301
 
 
+dycontrol restart jdkdy JDCourierApi JDCourierApi.dll 12302
 
